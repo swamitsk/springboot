@@ -1,0 +1,43 @@
+<html layout:decorator="layout">
+
+<div layout:fragment="content">
+
+    <a class="btn btn-primary" href="/employees/new">Add New Employee</a>
+
+    <table class="table table-striped" id="employees_list">
+        <thead>
+        <tr>
+            <th>Name</th>
+            <th>Department</th>
+            <th>Location</th>
+            <th>Action</th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr data-th-each="employee : ${employees}">
+            <td class="name" data-th-text="${employee.name}"></td>
+            <td class="department" data-th-text="${employee.department}"></td>
+            <td class="location" data-th-text="${employee.location}"></td>
+
+            <td>
+                <a th:href="@{'/employees/{id}/delete'(id=${employee.id})}" class="delete" th:attr="name=${employee.name}">
+                        <span class="fa-stack">
+                            <i class="glyphicon glyphicon-trash"></i>
+                        </span>
+                </a>
+            </td>
+
+            <td>
+                <a th:href="@{'/employees/{id}/edit'(id=${employee.id})}" class="edit" th:attr="name=${employee.name}">
+                    <span class="fa-stack">
+                        <i class="glyphicon glyphicon-edit"></i>
+                    </span>
+
+                </a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</html>
